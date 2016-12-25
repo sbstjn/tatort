@@ -16,7 +16,7 @@
 
     return new Tatort(
       parent.querySelector('h3 a').innerHTML.replace('Tatort: ', ''),
-      new Date(now.getUTCFullYear(), date[1]-1, date[0], time[0], time[1], 0),
+      new Date(Date.UTC(now.getUTCFullYear(), date[1]-1, date[0], time[0], time[1], 0)),
       channel
     )
   }
