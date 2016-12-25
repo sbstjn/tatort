@@ -1,6 +1,6 @@
 {
   "name": "tatort",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Query for upcoming Tatort shows",
   "main": "index.js",
   "scripts": {
