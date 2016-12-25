@@ -27,3 +27,7 @@ Feel free to use the code, it's released using the [MIT license](https://github.
 ## Contributors
 
 - [Sebastian Müller](https://sbstjn.com)
+
+## Data
+
+The library uses [TV direkt](http://www.tvdirekt.de/tatort-heute-abend.html) to get the most recent air times of Tatort.
