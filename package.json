@@ -1,0 +1,24 @@
+{
+  "name": "tatort",
+  "version": "0.0.1",
+  "description": "Query for upcoming Tatort shows",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "keywords": [
+    "Tatort",
+    "ARD",
+    "Das Erste",
+    "TV Show"
+  ],
+  "author": "Sebastian Müller <mail@sbstjn.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "jsdom": "^9.9.1",
+    "node-fetch": "^1.6.3"
+  }
+}
