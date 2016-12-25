@@ -20,7 +20,7 @@
         )
       });
     });
-
+    
     describe('list()', () => {
       it('should return a list of upcoming Tatort shows', () => {
         return TVDirekt.list().then(

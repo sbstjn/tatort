@@ -2,20 +2,20 @@
   'use strict'
 
   let fetch = require('node-fetch');
-  let jsdom = require("jsdom");
+  let cheerio = require('cheerio')
 
   let Tatort = require(__dirname + '/../data/show.js');
 
   let fromParent = function(parent) {
     let now = new Date();
 
-    let date = parent.querySelector('.date').innerHTML.substr(0, 5).split('.').map((el) => parseInt(el, 10));
-    let time = parent.querySelector('.time .time').innerHTML.split(':').map((el) => parseInt(el, 10));
+    let date = parent.find('.date').text().substr(0, 5).split('.').map((el) => parseInt(el, 10));
+    let time = parent.find('.time .time').text().split(':').map((el) => parseInt(el, 10));
 
-    let channel = parent.querySelector('.station a').getAttribute('title')
+    let channel = parent.find('.station a').attr('title')
 
     return new Tatort(
-      parent.querySelector('h3 a').innerHTML.replace('Tatort: ', ''),
+      parent.find('h3 a').text().replace('Tatort: ', ''),
       new Date(Date.UTC(now.getUTCFullYear(), date[1]-1, date[0], time[0], time[1], 0)),
       channel
     )
@@ -47,8 +47,8 @@
     list() {
       return this.data().then(
         (data) => {
-          let doc = jsdom.jsdom(data);
-          let list = doc.querySelectorAll('h3 a[href*="/tv-programm/sendungsdetails/"]')
+          let doc = cheerio.load(data);
+          let list = doc('h3 a[href*="/tv-programm/sendungsdetails/"]')
 
           if (list.length == 0) {
             throw new Error("Unable to parse HTML structure");
@@ -57,7 +57,7 @@
           let items = [];
 
           for (let i = 0, len = list.length; i < len; i++) {
-            items.push(fromParent(list[i].parentNode.parentNode.parentNode.parentNode))
+            items.push(fromParent(doc(list[i]).parent().parent().parent().parent()))
           }
 
           return items;
@@ -93,14 +93,14 @@
     next() {
       return this.data().then(
         (data) => {
-          let doc = jsdom.jsdom(data);
-          let list = doc.querySelectorAll('h3 a[href*="/tv-programm/sendungsdetails/"]')
+          let doc = cheerio.load(data);
+          let list = doc('h3 a[href*="/tv-programm/sendungsdetails/"]')
 
           if (list.length == 0) {
             throw new Error("Unable to parse HTML structure");
           }
 
-          return fromParent(list[0].parentNode.parentNode.parentNode.parentNode)
+          return fromParent(list.first().parent().parent().parent().parent())
         }
       )
     }
