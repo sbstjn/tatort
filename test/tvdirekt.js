@@ -40,5 +40,15 @@
         )
       });
     });
+
+    describe('tomorrow()', () => {
+      it('should return a list of Tatort shows tomorrow', () => {
+        return TVDirekt.tomorrow().then(
+          (list) => {
+            assert.equal(list.length, 4)
+          }
+        )
+      });
+    });
   });
 })();

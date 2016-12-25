@@ -65,20 +65,29 @@
       )
     }
 
-    today() {
+    onDate(date) {
       return this.list().then(
         (list) => {
           return list.filter(
             (item) => {
-              let now = new Date();
-
-              return now.getUTCFullYear() == item.date.getUTCFullYear()
-                && now.getUTCMonth() == item.date.getUTCMonth()
-                && now.getUTCDate() == item.date.getUTCDate()
+              return date.getUTCFullYear() == item.date.getUTCFullYear()
+                && date.getUTCMonth() == item.date.getUTCMonth()
+                && date.getUTCDate() == item.date.getUTCDate()
             }
           )
         }
       )
+    }
+
+    today() {
+      return this.onDate(new Date());
+    }
+
+    tomorrow() {
+      let check = new Date();
+      check.setDate(check.getDate() + 1);
+
+      return this.onDate(check);
     }
 
     next() {
