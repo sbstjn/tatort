@@ -1,4 +1,4 @@
-# Tatort
+# Tatort [![CircleCI](https://circleci.com/gh/sbstjn/tatort.svg?style=svg)](https://circleci.com/gh/sbstjn/tatort)
 
 Query for upcoming [Tatort](http://www.daserste.de/unterhaltung/krimi/tatort/index.html) shows.
 
