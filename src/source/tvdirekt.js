@@ -5,6 +5,7 @@
   let cheerio = require('cheerio')
 
   let Tatort = require(__dirname + '/../data/show.js');
+  let List = require(__dirname + '/../data/list.js');
 
   let fromParent = function(parent) {
     let now = new Date();
@@ -54,13 +55,13 @@
             throw new Error("Unable to parse HTML structure");
           }
 
-          let items = [];
+          let shows = new List();
 
           for (let i = 0, len = list.length; i < len; i++) {
-            items.push(fromParent(doc(list[i]).parent().parent().parent().parent()))
+            shows.Add(fromParent(doc(list[i]).parent().parent().parent().parent()));
           }
 
-          return items;
+          return shows;
         }
       )
     }
@@ -68,7 +69,7 @@
     onDate(date) {
       return this.list().then(
         (list) => {
-          return list.filter(
+          return list.Search(
             (item) => {
               return date.getUTCFullYear() == item.date.getUTCFullYear()
                 && date.getUTCMonth() == item.date.getUTCMonth()
@@ -91,17 +92,8 @@
     }
 
     next() {
-      return this.data().then(
-        (data) => {
-          let doc = cheerio.load(data);
-          let list = doc('h3 a[href*="/tv-programm/sendungsdetails/"]')
-
-          if (list.length == 0) {
-            return null;
-          }
-
-          return fromParent(list.first().parent().parent().parent().parent())
-        }
+      return this.list().then(
+        list => list.First()
       )
     }
   }

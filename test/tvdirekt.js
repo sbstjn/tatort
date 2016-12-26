@@ -25,7 +25,7 @@
       it('should return a list of upcoming Tatort shows', () => {
         return TVDirekt.list().then(
           (list) => {
-            assert.equal(list.length, 10)
+            assert.equal(list.Count(), 10)
           }
         )
       });
