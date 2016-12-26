@@ -18,7 +18,7 @@
 
     return new Tatort(
       parent.find('h3 a').text().replace('Tatort: ', ''),
-      moment.tz(Date.UTC(now.getUTCFullYear(), date[1]-1, date[0], dateTime[0], dateTime[1], 0), 'Europe/Berlin'),
+      moment.tz(new Date(now.getUTCFullYear(), date[1]-1, date[0], dateTime[0], dateTime[1], 0), 'Europe/Berlin'),
       channel
     )
   }
@@ -63,20 +63,6 @@
           }
 
           return shows;
-        }
-      )
-    }
-
-    onDate(date) {
-      return this.list().then(
-        (list) => {
-          return list.Search(
-            (item) => {
-              return date.getUTCFullYear() == item.date.getUTCFullYear()
-                && date.getUTCMonth() == item.date.getUTCMonth()
-                && date.getUTCDate() == item.date.getUTCDate()
-            }
-          )
         }
       )
     }
