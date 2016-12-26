@@ -12,8 +12,9 @@ $ > npm install tatort
 
 ```bash
 let Tatort = require('tatort');
+let t = new Tatort('tvdirekt'); // Use TVDirekt as data source
 
-Tatort.next().then(
+r.next().then(
   (item) => {
     console.log(item.name, item.date, item.channel);
   }
@@ -30,4 +31,4 @@ Feel free to use the code, it's released using the [MIT license](https://github.
 
 ## Data
 
-The library uses [TV direkt](http://www.tvdirekt.de/tatort-heute-abend.html) to get the most recent air times of Tatort.
+The library uses [TV direkt](http://www.tvdirekt.de/tatort-heute-abend.html) to get the most recent air times of Tatort. Feel free to add a second data source, just make sure to implement the same interface!

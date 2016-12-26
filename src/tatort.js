@@ -1,6 +1,7 @@
 (() => {
   'use strict';
 
+  let List = require('./data/list.js');
   let TVDirekt = require('./source/tvdirekt.js');
 
   class Tatort {
@@ -9,23 +10,12 @@
       this.source = new Source(fixture);
     }
 
-    today() {
-      let check = new Date();
-
-      return this.source.onDate(check);
+    between(start, end) {
+      return this.list().then(list => new List(list.Search(item => item.date >= date && item.date <= end)))
     }
 
-    tomorrow() {
-      let check = new Date();
-      check.setDate(check.getDate() + 1);
-
-      return this.source.onDate(check);
-    }
-
-    next() {
-      return this.source.list().then(
-        list => list.First()
-      )
+    after(date) {
+      return this.list().then(list => new List(list.Search(item => item.date >= date)))
     }
 
     list() {
