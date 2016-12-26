@@ -3,6 +3,7 @@
 
   let fetch = require('node-fetch');
   let cheerio = require('cheerio')
+  let time = require('time');
 
   let Tatort = require(__dirname + '/../data/show.js');
   let List = require(__dirname + '/../data/list.js');
@@ -11,13 +12,13 @@
     let now = new Date();
 
     let date = parent.find('.date').text().substr(0, 5).split('.').map((el) => parseInt(el, 10));
-    let time = parent.find('.time .time').text().split(':').map((el) => parseInt(el, 10));
+    let dateTime = parent.find('.time .time').text().split(':').map((el) => parseInt(el, 10));
 
     let channel = parent.find('.station a').attr('title')
 
     return new Tatort(
       parent.find('h3 a').text().replace('Tatort: ', ''),
-      new Date(now.getUTCFullYear(), date[1]-1, date[0], time[0], time[1], 0),
+      new time.Date(now.getUTCFullYear(), date[1]-1, date[0], dateTime[0], dateTime[1], 0, 'Europe/Berlin'),
       channel
     )
   }

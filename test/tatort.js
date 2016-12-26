@@ -16,6 +16,14 @@
           }
         )
       );
+
+      it('should return a GMT+1 timestamp',
+        () => t.list().then(
+          (list) => {
+            assert.ok((list.First().date + "").indexOf('GMT+0100'))
+          }
+        )
+      );
     });
 
     describe('after()', () => {
