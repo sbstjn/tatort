@@ -13,6 +13,12 @@
         () => t.list().then(
           (list) => {
             assert.equal(list.Count(), 10)
+
+            var cur = list.Next();
+            assert.equal(cur.name, 'Im Namen des Vaters')
+
+            cur = list.Next();
+            assert.equal(cur.name, 'Klingelingeling')
           }
         )
       );

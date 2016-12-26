@@ -17,6 +17,8 @@
 
   class List {
     constructor(data) {
+      this.cursor = -1;
+
       if (data) {
         if (data.constructor === Array) {
           this.data = data;
@@ -26,6 +28,12 @@
       } else {
         this.data = [];
       }
+    }
+
+    Next() {
+      this.cursor++;
+
+      return this.data[this.cursor];
     }
 
     Count() {
