@@ -5,12 +5,12 @@
   let fs = require('fs');
 
   describe('Tatort', () => {
-    let Source = require(__dirname + '/../src/source/tvdirekt.js');
-    let TVDirekt = new Source(fs.readFileSync(__dirname + '/fixtures/example.html'));
+    let Tatort = require(__dirname + '/../');
+    let t = new Tatort('tvdirekt', fs.readFileSync(__dirname + '/fixtures/example.html'));
 
     describe('next()', () => {
       it('should return a valid Tatort', () => {
-        return TVDirekt.next().then(
+        return t.next().then(
           (item) => {
             assert.equal(item.name, 'Im Namen des Vaters')
             assert.equal(item.channel, 'HR')
@@ -23,7 +23,7 @@
 
     describe('list()', () => {
       it('should return a list of upcoming Tatort shows', () => {
-        return TVDirekt.list().then(
+        return t.list().then(
           (list) => {
             assert.equal(list.Count(), 10)
           }
@@ -33,7 +33,7 @@
 
     describe('today()', () => {
       it('should return a list of Tatort shows today', () => {
-        return TVDirekt.today().then(
+        return t.today().then(
           (list) => {
             assert.equal(list.length, 3)
           }
@@ -43,7 +43,7 @@
 
     describe('tomorrow()', () => {
       it('should return a list of Tatort shows tomorrow', () => {
-        return TVDirekt.tomorrow().then(
+        return t.tomorrow().then(
           (list) => {
             assert.equal(list.length, 3)
           }

@@ -79,23 +79,6 @@
         }
       )
     }
-
-    today() {
-      return this.onDate(new Date());
-    }
-
-    tomorrow() {
-      let check = new Date();
-      check.setDate(check.getDate() + 1);
-
-      return this.onDate(check);
-    }
-
-    next() {
-      return this.list().then(
-        list => list.First()
-      )
-    }
   }
 
   exports = module.exports = Source

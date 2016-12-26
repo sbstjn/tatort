@@ -4,30 +4,34 @@
   let TVDirekt = require('./source/tvdirekt.js');
 
   class Tatort {
-    constructor() {
-      this.source = new TVDirekt();
+    constructor(source, fixture) {
+      let Source = require('./source/' + source + '.js')
+      this.source = new Source(fixture);
     }
 
     today() {
-      return this.source.today();
+      let check = new Date();
+
+      return this.source.onDate(check);
     }
 
     tomorrow() {
-      return this.source.tomorrow();
+      let check = new Date();
+      check.setDate(check.getDate() + 1);
+
+      return this.source.onDate(check);
     }
 
     next() {
-      return this.source.next();
+      return this.source.list().then(
+        list => list.First()
+      )
     }
 
     list() {
       return this.source.list();
     }
-
-    today() {
-      return this.source.today();
-    }
   }
 
-  exports = module.exports = new Tatort();
+  exports = module.exports = Tatort;
 })();
