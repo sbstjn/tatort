@@ -2,8 +2,8 @@
   'use strict'
 
   let fetch = require('node-fetch');
+  let moment = require('moment-timezone');
   let cheerio = require('cheerio')
-  let time = require('time');
 
   let Tatort = require(__dirname + '/../data/show.js');
   let List = require(__dirname + '/../data/list.js');
@@ -18,7 +18,7 @@
 
     return new Tatort(
       parent.find('h3 a').text().replace('Tatort: ', ''),
-      new time.Date(now.getUTCFullYear(), date[1]-1, date[0], dateTime[0], dateTime[1], 0, 'Europe/Berlin'),
+      moment.tz(Date.UTC(now.getUTCFullYear(), date[1]-1, date[0], dateTime[0], dateTime[1], 0), 'Europe/Berlin'),
       channel
     )
   }
