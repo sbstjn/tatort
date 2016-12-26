@@ -97,7 +97,7 @@
           let list = doc('h3 a[href*="/tv-programm/sendungsdetails/"]')
 
           if (list.length == 0) {
-            throw new Error("Unable to parse HTML structure");
+            return null;
           }
 
           return fromParent(list.first().parent().parent().parent().parent())

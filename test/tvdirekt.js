@@ -20,7 +20,7 @@
         )
       });
     });
-    
+
     describe('list()', () => {
       it('should return a list of upcoming Tatort shows', () => {
         return TVDirekt.list().then(
@@ -35,7 +35,7 @@
       it('should return a list of Tatort shows today', () => {
         return TVDirekt.today().then(
           (list) => {
-            assert.equal(list.length, 1)
+            assert.equal(list.length, 3)
           }
         )
       });

@@ -12,6 +12,10 @@
       return this.source.today();
     }
 
+    tomorrow() {
+      return this.source.tomorrow();
+    }
+
     next() {
       return this.source.next();
     }
