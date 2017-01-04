@@ -16,10 +16,11 @@
             assert.equal(list.Count(), 10)
 
             var cur = list.Next();
-            assert.equal(cur.name, 'Im Namen des Vaters')
+            assert.equal(cur.name, 'Preis des Lebens')
 
+            list.Next();
             cur = list.Next();
-            assert.equal(cur.name, 'Klingelingeling')
+            assert.equal(cur.name, 'Spiel auf Zeit')
           }
         )
       );
@@ -69,14 +70,14 @@
           moment.tz(new Date(2016, 11, 28, 21, 0, 1), 'Europe/Berlin')
         ).then(
           list => {
-            assert.equal(list.First().name, 'Der Hammer');
+            assert.equal(list.First().name, 'Preis des Lebens');
           }
         )
       );
 
       it('should return shows after specified date #5',
         () => t.after(
-          moment.tz(new Date(2016, 11, 28, 22, 0, 1), 'Europe/Berlin')
+          moment.tz(new Date(2017, 0, 7, 23, 15, 1), 'Europe/Berlin')
         ).then(
           list => {
             assert.equal(list.First(), null);
@@ -88,22 +89,22 @@
     describe('between', () => {
       it('should filter shows #1',
         () => t.between(
-          moment.tz(new Date(2016, 11, 28, 19, 0, 0), 'Europe/Berlin'),
-          moment.tz(new Date(2016, 11, 28, 22, 0, 1), 'Europe/Berlin')
+          moment.tz(new Date(2017, 0, 6, 22, 0, 0), 'Europe/Berlin'),
+          moment.tz(new Date(2017, 0, 6, 23, 50,0), 'Europe/Berlin')
         ).then(
           list => {
-            assert.equal(list.Count(), 3);
+            assert.equal(list.Count(), 2);
           }
         )
       );
 
       it('should filter shows #2',
         () => t.between(
-          moment.tz(new Date(2016, 11, 26, 20, 0, 0), 'Europe/Berlin'),
-          moment.tz(new Date(2016, 11, 26, 20, 5, 0), 'Europe/Berlin')
+          moment.tz(new Date(2017, 0, 4, 22, 0, 0), 'Europe/Berlin'),
+          moment.tz(new Date(2017, 0, 4, 22, 5, 0), 'Europe/Berlin')
         ).then(
           list => {
-            assert.equal(list.Count(), 1);
+            assert.equal(list.Count(), 2);
           }
         )
       );

@@ -51,6 +51,10 @@
     Search(func) {
       return new List(this.data.filter(func));
     }
+
+    Sort(func) {
+      return new List(this.data.sort(func));
+    }
   }
 
   exports = module.exports = List

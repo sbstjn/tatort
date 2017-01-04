@@ -13,7 +13,11 @@
 
     let date = parent.find('.date').text().substr(0, 5).split('.');
     let time = parent.find('.time .time').text().split(':');
-    let dateText = [now.getUTCFullYear(), date[1], date[0]].join('-') + " " + [time[0], time[1], '00'].join(':');
+    let dateText = [2017, date[1], date[0]].join('-') + " " + [time[0], time[1], '00'].join(':');
+
+    if (parseInt(date[1], 10) > 5) {
+      return null;
+    }
 
     return new Tatort(
       parent.find('h3 a').text().replace('Tatort: ', ''),
@@ -58,10 +62,14 @@
           let shows = new List();
 
           for (let i = 0, len = list.length; i < len; i++) {
-            shows.Add(fromParent(doc(list[i]).parent().parent().parent().parent()));
+            let show = fromParent(doc(list[i]).parent().parent().parent().parent());
+
+            if (show != null) {
+              shows.Add(show);
+            }
           }
 
-          return shows;
+          return shows.Sort((a, b) => a.date - b.date);
         }
       )
     }
