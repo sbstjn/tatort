@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  let List = require('./data/list.js');
+  let List = require('liste');
   let TVDirekt = require('./source/tvdirekt.js');
 
   class Tatort {

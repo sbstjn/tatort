@@ -6,7 +6,7 @@
   let cheerio = require('cheerio')
 
   let Tatort = require(__dirname + '/../data/show.js');
-  let List = require(__dirname + '/../data/list.js');
+  let List = require('liste');
 
   let fromParent = function(parent) {
     let now = new Date();
