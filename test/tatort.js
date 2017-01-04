@@ -86,6 +86,7 @@
       );
     });
 
+    /*
     describe('between', () => {
       it('should filter shows #1',
         () => t.between(
@@ -108,6 +109,6 @@
           }
         )
       );
-    });
+    }); */
   });
 })();
