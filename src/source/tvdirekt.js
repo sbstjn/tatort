@@ -15,10 +15,6 @@
     let time = parent.find('.time .time').text().split(':');
     let dateText = [2017, date[1], date[0]].join('-') + " " + [time[0], time[1], '00'].join(':');
 
-    if (parseInt(date[1], 10) > 5) {
-      return null;
-    }
-
     return new Tatort(
       parent.find('h3 a').text().replace('Tatort: ', ''),
       moment.tz(dateText, 'Europe/Berlin'),

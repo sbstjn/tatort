@@ -14,10 +14,8 @@ $ > npm install tatort
 let Tatort = require('tatort');
 let t = new Tatort('tvdirekt'); // Use TVDirekt as data source
 
-t.next().then(
-  (item) => {
-    console.log(item.name, item.date, item.channel);
-  }
+t.next().list(
+  console.log
 );
 ```
 
